@@ -2,6 +2,8 @@
 language: python
 dist: trusty
 sudo: false
+services:
+  - docker
 before_install:
   - pip install flake8
   - npm install -g eslint stylelint
@@ -9,3 +11,4 @@ script:
   - flake8 moderator
   - eslint 'moderator/moderate/static/js/*.js'
   - stylelint 'moderator/moderate/static/css/*.css'
+  - docker build . -t $TRAVIS_COMMIT
