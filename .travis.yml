@@ -22,8 +22,13 @@ script:
 
 before_deploy:
  - eval $(aws ecr get-login --no-include-email --region us-west-2)
+
 deploy:
- - docker push "$ECR:$TRAVIS_COMMIT"
+  provider: script
+  on:
+    all_branches: true
+    condition: $TRAVIS_BRANCH =~ ^(master|prod)$
+  script: docker push "$ECR:$TRAVIS_COMMIT"
 
 env:
   global:
