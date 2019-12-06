@@ -1,11 +1,10 @@
 language: python
-dist: trusty
- addons:
-   snaps:
-     - name: aws-cli
-       confinement: classic 
-       channel: latest/edge 
-sudo: false
+
+dist: xenial
+addons:
+  snaps:
+    - aws-cli
+
 services:
  - docker
 
