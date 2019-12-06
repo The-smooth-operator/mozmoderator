@@ -1,5 +1,10 @@
 language: python
 dist: trusty
+ addons:
+   snaps:
+     - name: aws-cli
+       confinement: classic 
+       channel: latest/edge 
 sudo: false
 services:
  - docker
@@ -14,6 +19,7 @@ script:
  - docker build . -t "$ECR:$TRAVIS_COMMIT"
 
 before_deploy:
+ - apt-get
  - eval $(aws ecr get-login --no-include-email --region us-west-2)
 deploy:
  - docker push "$ECR:$TRAVIS_COMMIT"
