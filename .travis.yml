@@ -3,7 +3,9 @@ language: python
 dist: xenial
 addons:
   snaps:
-    - aws-cli
+    - name: aws-cli
+      confinement: classic
+      channel: latest/edge
 
 services:
  - docker
